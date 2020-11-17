@@ -19,7 +19,7 @@ jobs:
       - run: |
           echo This job does specify a container.
           echo It runs in the container instead of the VM.
-        name: Run in container:
+        name: Run in container
      
   # This workflow contains a single job called "build"
   build:
