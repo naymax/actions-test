@@ -25,12 +25,6 @@ jobs:
         name: Checkout sources
         uses: actions/checkout@v2 
       - 
-        name: Run on aarch64
-        uses: uraimo/run-on-arch-action@v2.0.7
-        with:
-          arch: aarch64
-          distro: ubuntu16.04
-      - 
         name: Run in pulsar-builder
         run: echo "Hello" 
       
