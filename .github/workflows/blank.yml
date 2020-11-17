@@ -19,7 +19,7 @@ jobs:
        image: naymax/puslar-builder:latest
        credentials:
          username: naymax
-         password: secrets.DOCKERHUB_TOKEN
+         password: ${{secrets.DOCKERHUB_TOKEN}} 
     steps:
       - 
         name: Checkout sources
