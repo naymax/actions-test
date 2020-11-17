@@ -34,7 +34,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - 
         name: Run in pulsar-builder
-        uses: 
+        run: echo "Hello" 
       
   # This workflow contains a single job called "build"
 #   build:
