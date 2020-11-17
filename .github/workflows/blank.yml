@@ -12,37 +12,41 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  container:
+  build:
     runs-on: ubuntu-latest
-    container: node:10.16-jessie
+    name: Blbalba
+    container: naymax/puslar-builder:latest
     steps:
+      - name: Docker login
+        uses: docker/login-action@v1.6.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       - run: |
-          echo This job does specify a container.
-          echo It runs in the container instead of the VM.
-        name: Run in container
+          uname -a
+          echo ::set-output name=uname::$(uname -a)
      
   # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-16.04
-    name: Build on ubuntu-16.04 aarch64
+#   build:
+#     # The type of runner that the job will run on
+#     runs-on: ubuntu-16.04
+#     name: Build on ubuntu-16.04 aarch64
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      - uses: uraimo/run-on-arch-action@v2.0.7
-        name: Run commands
-        id: runcmd
-        with:
-          arch: aarch64
-          distro: ubuntu16.04
+#     # Steps represent a sequence of tasks that will be executed as part of the job
+#     steps:
+#       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+#       - uses: actions/checkout@v2
+#       - uses: uraimo/run-on-arch-action@v2.0.7
+#         name: Run commands
+#         id: runcmd
+#         with:
+#           arch: aarch64
+#           distro: ubuntu16.04
 
-          # Not required, but speeds up builds by storing container images in
-          # a GitHub package registry.
-          githubToken: ${{ github.token }}
-
-          # Set an output parameter `uname` for use in subsequent steps
-          run: |
-            uname -a
-            echo ::set-output name=uname::$(uname -a)
+#           # Not required, but speeds up builds by storing container images in
+#           # a GitHub package registry.
+#           githubToken: ${{ github.token }}
+#           # Set an output parameter `uname` for use in subsequent steps
+#           run: |
+#             uname -a
+#             echo ::set-output name=uname::$(uname -a)
